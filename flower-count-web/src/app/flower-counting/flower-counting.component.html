@@ -1,0 +1,23 @@
+<div class="container">
+    <mat-card>
+      <h2>Flower Count Processing</h2>
+      <button mat-raised-button color="primary" (click)="processImages()" [disabled]="loading">
+        {{ loading ? 'Processing...' : 'Start Batch Processing' }}
+      </button>
+    </mat-card>
+  
+    <mat-card *ngIf="results.length > 0">
+      <h3>Results</h3>
+      <mat-list>
+        <mat-list-item *ngFor="let result of results">
+          {{ result.filename }}: {{ result.flower_count }} flowers detected
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
+  
+    <div *ngIf="loading" class="loading">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+      <p>Processing images... Please wait.</p>
+    </div>
+  </div>
+  
