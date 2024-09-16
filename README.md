@@ -25,18 +25,14 @@ This repository contains a full-stack application comprising a backend API, a fr
 ```plaintext
 ├── backend
 │   ├── main.py
-│   ├── requirements.txt
-│   └── ... (other backend files)
+│   └── requirements.txt
 ├── flower-count-web
 │   ├── package.json
-│   ├── src
-│   └── ... (other frontend files)
+│   └── src
 ├── flower_count_android
 │   ├── pubspec.yaml
-│   ├── lib
-│   └── ... (other Flutter app files)
-├── README.md
-└── ... (any other files)
+│   └── lib
+└── README.md
 ```
 
 ---
