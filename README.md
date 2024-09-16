@@ -199,41 +199,10 @@ The frontend web app will be available at `http://localhost:4200`.
 
 ---
 
-## Design Decisions
-
-- **FastAPI for Backend**:
-  - Chosen for its high performance and support for asynchronous operations.
-  - Easy integration with machine learning models and libraries.
-- **Flutter for Android App**:
-  - Provides a fast development cycle and expressive UI.
-  - Cross-platform capabilities for potential future expansion.
-- **API Key Authentication**:
-  - Simple and effective way to secure API endpoints without overcomplicating the authentication process.
-
----
-
-## Challenges Faced
-
-- **Model Integration**:
-  - Integrating the pre-trained flower counting model required careful handling of image data and ensuring compatibility with the model's expected input format.
-- **Dataset Handling**:
-  - Processing a dataset provided as a zip file necessitated unzipping and handling files locally, which involved additional error checking and file management.
-- **Asynchronous Operations in Flutter**:
-  - Managing timed image captures and ensuring that UI updates occur smoothly required attention to asynchronous programming patterns in Flutter.
-- **API Communication**:
-  - Handling network requests and ensuring reliable communication between the Flutter app and the backend, especially with emulator and device IP configurations.
-
----
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
----
-
-## Contact
-
-For any questions or issues, please open an issue in the repository or contact the project maintainer.
 
 ---
 
