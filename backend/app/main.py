@@ -67,7 +67,7 @@ def process_image(file: UploadFile):
 def read_root():
     return {
         "message": "Flower Counting API",
-        "Done by": "Goodluck Wile"
+        "Author": "Goodluck Wile"
         }
 
 @app.post("/process-images/", dependencies=[Depends(authenticate)])
