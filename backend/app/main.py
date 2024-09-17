@@ -10,11 +10,9 @@ from fastapi.security.api_key import APIKeyHeader
 import logging
 from concurrent.futures import ThreadPoolExecutor
 
-
 logging.basicConfig(level=logging.INFO)
 
 app = FastAPI()
-
 
 origins = [
     "http://localhost",
@@ -67,11 +65,13 @@ def process_image(file: UploadFile):
 
 @app.get("/")
 def read_root():
-    return {"message": "Flower Counting API"}
-
+    return {
+        "message": "Flower Counting API",
+        "Done by": "Goodluck Wile"
+        }
 
 @app.post("/process-images/", dependencies=[Depends(authenticate)])
-async def upload(files: List[UploadFile] = File(...)):
+async def process_images(files: List[UploadFile] = File(...)):
     flower_counts = []
     max_image_size = 5 * 1024 * 1024  
 

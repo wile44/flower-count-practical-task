@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FlowerCountingService } from '../flower-counting.service';
+import { FlowerCountingService } from '../services/flower-counting.service';
 
 @Component({
   selector: 'app-flower-counting',
@@ -39,6 +39,7 @@ export class FlowerCountingComponent implements OnInit {
   // Trigger processing and get the results
   processImages(): void {
     this.loading = true;
+    this.results = [];
     this.flowerCountingService.processDataset().subscribe(
       (response: any) => {
         this.results = response.results;

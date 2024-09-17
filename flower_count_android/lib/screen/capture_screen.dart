@@ -1,9 +1,8 @@
 
 import 'dart:async';
 import 'dart:io';
-import 'package:http/http.dart' as http;
+import 'package:flower_count_android/services/api_services.dart';
 import 'package:path/path.dart' as path;
-
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -44,13 +43,11 @@ class _CaptureScreenState extends State<CaptureScreen> {
     super.dispose();
   }
 
-  // Function to capture image and store it locally
   Future<void> captureImage() async {
     try {
       await _initializeControllerFuture;
       final image = await _controller.takePicture();
 
-      // Save image locally
       final directory = await getApplicationDocumentsDirectory();
       final imagePath = path.join(directory.path, '${DateTime.now()}.png');
       final imageFile = File(imagePath);
@@ -65,7 +62,6 @@ class _CaptureScreenState extends State<CaptureScreen> {
     }
   }
 
-  // Function to start automated image capture
   void startCapturing() {
     if (metadata.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Please enter metadata before starting.')));
@@ -83,7 +79,6 @@ class _CaptureScreenState extends State<CaptureScreen> {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Image capture started.')));
   }
 
-  // Function to stop capturing images
   void stopCapturing() {
     setState(() {
       isCapturing = false;
@@ -92,31 +87,8 @@ class _CaptureScreenState extends State<CaptureScreen> {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Image capture stopped.')));
   }
 
-  // Function to send image and metadata to the backend
-  Future<void> uploadImage(File imageFile, String metadata) async {
-    try {
-      final request = http.MultipartRequest(
-        'POST',
-        Uri.parse('http://10.0.2.2:8000/process-images/'),
-      );
+  
 
-      request.files.add(await http.MultipartFile.fromPath('files', imageFile.path));
-      request.fields['metadata'] = metadata;
-
-      final response = await request.send();
-      if (response.statusCode == 200) {
-        print('Image uploaded successfully');
-      } else {
-        print('Failed to upload image');
-        throw Exception('Failed to upload image');
-      }
-    } catch (e) {
-      print('Error uploading image: $e');
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to upload image: $e')));
-    }
-  }
-
-  // Function to upload all captured images
   Future<void> uploadImages() async {
     if (capturedImages.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('No images to upload.')));
@@ -127,9 +99,8 @@ class _CaptureScreenState extends State<CaptureScreen> {
       isUploading = true;
     });
 
-    for (var image in capturedImages) {
-      await uploadImage(image, metadata);
-    }
+      await ApiServices().uploadImages(capturedImages, metadata, context);
+
 
     setState(() {
       isUploading = false;
