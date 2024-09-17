@@ -5,7 +5,7 @@
 This repository contains a full-stack application comprising a backend API, a frontend web application, and an Android mobile app. The application utilizes a pre-trained computer vision model for counting flowers in images.
 
 - **Backend**: A FastAPI service that serves the flower counting model and provides endpoints for batch processing images.
-- **flower-count-web**: A web interface that allows users to upload images and view the count of flowers detected in each image.
+- **flower-count-web**: A web interface that allows users to process images and view the count of flowers detected in each image.
 - **flower_count_android**: A Flutter-based mobile app that captures images automatically at timed intervals and allows users to embed metadata.
 
 ---
