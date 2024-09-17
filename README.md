@@ -107,15 +107,15 @@ The backend API will be available at `http://127.0.0.1:8000`.
 2. Install the required npm packages:
 
    ```bash
-   npm install
+   npm install or npm install --legacy-peer-deps
    ```
 
 #### b. Configure API Endpoint
 
-1. Open the frontend configuration file (e.g., `src/config.js`) and set the backend API URL:
+1. Set the backend API URL:
 
    ```javascript
-   export const API_URL = "http://127.0.0.1:8000";
+   return this.http.post('http://127.0.0.1:8000/process-images/', formData);
    ```
 
 #### c. Run the Frontend Application
@@ -174,7 +174,7 @@ The frontend web app will be available at `http://localhost:4200`.
 
 - **Batch Image Processing Endpoint**: `/process-dataset/`
   - Processes all images in the `test` directory located in the backend folder.
-- **Upload Images Endpoint**: `/process-image/`
+- **Upload Images Endpoint**: `/process-images/`
   - Accepts image files and returns the count of flowers detected in each image.
 - **Authentication**:
   - Include the API key in the request headers:
@@ -186,7 +186,7 @@ The frontend web app will be available at `http://localhost:4200`.
 ### 2. Using the Frontend Web App
 
 1. Open the web app in your browser: `http://localhost:4200`.
-2. Use the interface to upload images.
+2. Use the interface to process images.
 3. View the flower count results for each image after processing.
 
 ### 3. Using the Android App
