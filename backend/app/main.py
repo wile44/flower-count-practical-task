@@ -62,7 +62,6 @@ def process_image(file: UploadFile):
         logging.error(f"General error processing image {file.filename}: {e}")
         raise HTTPException(status_code=500, detail=f"Error processing image {file.filename}: {str(e)}")
     
-
 @app.get("/")
 def read_root():
     return {
@@ -70,7 +69,7 @@ def read_root():
         "Author": "Goodluck Wile"
         }
 
-@app.post("/process-images/", dependencies=[Depends(authenticate)])
+@app.post("/process-images/")
 async def process_images(files: List[UploadFile] = File(...)):
     flower_counts = []
     max_image_size = 5 * 1024 * 1024  
@@ -100,7 +99,7 @@ async def process_images(files: List[UploadFile] = File(...)):
 
 
 
-@app.post("/process-dataset/", dependencies=[Depends(authenticate)])
+@app.post("/process-dataset/")
 async def process_dataset():
     dataset_directory = os.path.join(os.path.dirname(__file__), "test")
     if not os.path.exists(dataset_directory):
